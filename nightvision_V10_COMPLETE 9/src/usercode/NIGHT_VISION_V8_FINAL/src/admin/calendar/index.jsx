@@ -1,1 +1,0 @@
-// FullCalendar integration placeholder

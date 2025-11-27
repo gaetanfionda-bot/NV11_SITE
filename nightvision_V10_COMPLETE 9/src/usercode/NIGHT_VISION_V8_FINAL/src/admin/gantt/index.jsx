@@ -1,1 +1,0 @@
-// Gantt timeline placeholder
