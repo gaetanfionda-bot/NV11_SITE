@@ -1,0 +1,26 @@
+[
+  {
+    "ref": "LD007",
+    "name": "NIGHT VISION LD007",
+    "price": 59,
+    "image": "/products/LD007_main.jpg",
+    "images": [
+      "/products/LD007_main.jpg",
+      "/products/LD007_side.jpg"
+    ],
+    "description": "Modèle LD007 – LED haute luminosité, autonomie renforcée, structure flexible.",
+    "colors": ["Rouge", "Bleu", "Vert"]
+  },
+  {
+    "ref": "LD008",
+    "name": "NIGHT VISION LD008",
+    "price": 69,
+    "image": "/products/LD008_main.jpg",
+    "images": [
+      "/products/LD008_main.jpg",
+      "/products/LD008_side.jpg"
+    ],
+    "description": "Modèle LD008 – intensité LED variable, effet néon, idéal festivals & clubs.",
+    "colors": ["Rouge", "Violet", "Jaune"]
+  }
+]
