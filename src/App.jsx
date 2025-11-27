@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
+
 import Home from "./pages/Home.jsx";
 import Eshop from "./pages/Eshop.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
@@ -15,7 +16,9 @@ export default function App() {
   return (
     <CartProvider>
       <Header />
-      <div className="pt-20" />
+
+      {/* marge pour le header en fixed */}
+      <div className="pt-20"></div>
 
       <Routes>
         <Route path="/" element={<Home />} />
