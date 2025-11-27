@@ -1,1 +1,3 @@
-/* CSS COMPLET INSÉRÉ DANS CHAT, À COLLER ICI (TROP LONG POUR PYTHON) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
