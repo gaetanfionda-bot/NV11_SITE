@@ -1,0 +1,20 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Festival {
+  id       Int     @id @default(autoincrement())
+  title    String
+  date     DateTime
+  machine  String
+  location String?
+  revenue  Float?
+  notes    String?
+  contact  String?
+}

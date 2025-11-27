@@ -1,0 +1,1 @@
+export default function InstallForm(){return <section>InstallForm</section>}

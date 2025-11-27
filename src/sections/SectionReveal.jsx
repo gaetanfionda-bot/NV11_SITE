@@ -1,0 +1,1 @@
+export default function SectionReveal(){return <section>SectionReveal</section>}

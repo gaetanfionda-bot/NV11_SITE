@@ -1,0 +1,1 @@
+export default function AvantagesSection(){return <section>AvantagesSection</section>}

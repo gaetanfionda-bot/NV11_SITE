@@ -1,0 +1,1 @@
+// Machines page placeholder

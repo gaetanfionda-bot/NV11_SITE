@@ -1,0 +1,1 @@
+export default function GalerieSection(){return <section>GalerieSection</section>}
