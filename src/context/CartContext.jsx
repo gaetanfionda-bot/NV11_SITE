@@ -1,52 +1,59 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 
-export function CartProvider({ children }) {
-  const SHIPPING_FEE = 3.5;
+// Hook pratique
+export function useCart() {
+  return useContext(CartContext);
+}
 
+export function CartProvider({ children }) {
   const [cart, setCart] = useState(() => {
     const saved = localStorage.getItem("nv_cart");
     return saved ? JSON.parse(saved) : [];
   });
 
+  // Sauvegarde automatique dans localStorage
   useEffect(() => {
     localStorage.setItem("nv_cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (product) => {
+  // Ajouter au panier
+  function addToCart(product) {
     setCart((prev) => {
-      const exists = prev.find((p) => p.id === product.id);
-
+      const exists = prev.find((p) => p.ref === product.ref);
       if (exists) {
         return prev.map((p) =>
-          p.id === product.id ? { ...p, qty: p.qty + 1 } : p
+          p.ref === product.ref ? { ...p, qty: p.qty + 1 } : p
         );
       }
-
       return [...prev, { ...product, qty: 1 }];
     });
-  };
+  }
 
-  const removeFromCart = (id) => {
-    setCart((prev) => prev.filter((p) => p.id !== id));
-  };
-
-  const updateQty = (id, qty) => {
-    if (qty <= 0) return;
+  // Supprimer 1
+  function decreaseQty(ref) {
     setCart((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, qty } : p))
+      prev
+        .map((p) =>
+          p.ref === ref ? { ...p, qty: Math.max(0, p.qty - 1) } : p
+        )
+        .filter((p) => p.qty > 0)
     );
-  };
+  }
 
-  const clearCart = () => setCart([]);
+  // Supprimer totalement
+  function removeFromCart(ref) {
+    setCart((prev) => prev.filter((p) => p.ref !== ref));
+  }
 
-  const total = cart.reduce(
-    (sum, item) => sum + item.price * item.qty,
-    0
-  );
+  // Vider panier
+  function clearCart() {
+    setCart([]);
+  }
 
-  const totalWithShipping = total + SHIPPING_FEE;
+  // Prix total
+  const total = cart.reduce((sum, p) => sum + p.price * p.qty, 0);
 
   return (
     <CartContext.Provider
@@ -54,11 +61,9 @@ export function CartProvider({ children }) {
         cart,
         addToCart,
         removeFromCart,
-        updateQty,
+        decreaseQty,
         clearCart,
         total,
-        totalWithShipping,
-        SHIPPING_FEE,
       }}
     >
       {children}
